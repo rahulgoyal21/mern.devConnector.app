@@ -46,7 +46,6 @@ router.post(
 
       //Password matching
       const isMatch = await bcrypt.compare(password, user.password);
-      console.log('.....password.....', isMatch);
       if (!isMatch) {
         return res
           .status(400)
@@ -56,13 +55,13 @@ router.post(
       //Return jsonwebtoken
       const payload = {
         user: {
-          id: user.id
+          id: user.id                        //mongoose convert the _id to id itself
         }
       };
       jwt.sign(
-        payload,
+        payload,                      //mandatory to pass payload
         config.get('jwtSecret'),
-        { expiresIn: 360000 },
+        { expiresIn: 360000 },       //optional to pass expiresIN
         (err, token) => {
           if (err) throw err;
           return res.json({ token });

@@ -51,7 +51,7 @@ const ProfileSchema = new schema({
         type: Boolean,
         default: false
       },
-      descriptiion: {
+      description: {
         type: String
       }
     }
