@@ -121,7 +121,7 @@ router.get('/user/:user_id', async (req, res) => {
     const profile = await Profile.findOne({
       user: req.params.user_id
     }).populate('user', ['name', 'avatar']);
-    if (!profile) return res.status(400).json({ msg: 'Profile not found' });
+    if (!profile) return res.status(404).json({ msg: 'Profile not found' });
     return res.json(profile);
   } catch (error) {
     console.log(error.message);
@@ -213,7 +213,7 @@ router.delete('/experience/:experience_id', auth, async (req, res) => {
       .indexOf(req.params.experience_id);
 
     if (removeIndex >= 0) profile.experience.splice(removeIndex, 1);
-    else return res.status(400).json({ msg: 'Experience Not Found' });
+    else return res.status(404).json({ msg: 'Experience Not Found' });
 
     await profile.save();
     return res.json(profile);
