@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import './App.css';
-import Landing from './components/layout/landing';
-import Navbar from './components/layout/navbar';
+import Landing from './components/layout/Landing';
+import Navbar from './components/layout/Navbar';
 const App = () => (
   <Fragment>
     <Landing />

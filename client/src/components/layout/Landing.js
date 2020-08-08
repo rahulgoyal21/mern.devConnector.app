@@ -1,6 +1,6 @@
 import React from 'react';
 
-const landing = () => {
+const Landing = () => {
   return (
     <section className='landing'>
       <div className='dark-overlay'>
@@ -24,4 +24,4 @@ const landing = () => {
   );
 };
 
-export default landing;
+export default Landing;

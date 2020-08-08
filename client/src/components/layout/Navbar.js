@@ -1,11 +1,11 @@
 import React from 'react';
 
-const navbar = () => {
+const Navbar = () => {
   return (
-    <nav class='navbar bg-dark'>
+    <nav className='navbar bg-dark'>
       <h1>
         <a href='index.html'>
-          <i class='fas fa-code'></i> DevConnector
+          <i className='fas fa-code'></i> DevConnector
         </a>
       </h1>
       <ul>
@@ -23,4 +23,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar;
