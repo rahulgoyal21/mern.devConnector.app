@@ -1,0 +1,58 @@
+.ballLoader {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 100vh;
+}
+.ballLoader ul {
+  justify-content: center;
+  align-items: centerl;
+  border-bottom: 5px solid #000000;
+  display: flex;
+  padding: 0px;
+}
+
+.ballLoader ul li {
+  width: 50px;
+  height: 50px;
+  list-style: none;
+  background-color: #000000;
+  margin: 0 10px;
+  border-radius: 50%;
+  animation: bouncy 1s linear infinite;
+}
+
+@keyframes bouncy {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-150px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.ballLoader ul li:nth-child(1) {
+  animation-delay: 0.2s;
+  background-color: #fd6b;
+}
+
+.ballLoader ul li:nth-child(2) {
+  animation-delay: 0.4s;
+  background-color: #81ecec;
+}
+
+.ballLoader ul li:nth-child(3) {
+  animation-delay: 0.6s;
+  background-color: #55efe4;
+}
+.ballLoader ul li:nth-child(4) {
+  animation-delay: 0.8s;
+  background-color: #fd79e8;
+}
+.ballLoader ul li:nth-child(5) {
+  animation-delay: 1s;
+  background-color: #ff99a7;
+}
