@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BouncyBallLoader from '../layout/spinner';
 import { getCurrentProfile } from '../../actions/profile';
-
+import DashboardActions from './DashboardActions';
 const Dashboard = ({
   getCurrentProfile,
   auth: { user },
@@ -22,7 +22,9 @@ const Dashboard = ({
         <i className='fas fa-user'> Welcome {user && user.name}</i>
       </p>
       {profile !== null ? (
-        <Fragment>Has</Fragment>
+        <Fragment>
+          <DashboardActions />
+        </Fragment>
       ) : (
         <Fragment>
           <p>You have not setup a profile, please add some info</p>

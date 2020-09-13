@@ -15,7 +15,6 @@ router.get('/me', auth, async (req, res) => {
     const profile = await Profile.findOne({
       user: req.user.id
     }).populate('user', ['name', 'avatar']);
-    console.log('profile....', profile);
     if (!profile) {
       return res.status(400).json({ msg: 'There is no profile for this user' });
     }
@@ -57,7 +56,6 @@ router.post(
       instagram,
       linkedin
     } = req.body;
-
     //Build profile object
     let profileFields = {};
     profileFields.user = req.user.id;
@@ -67,9 +65,9 @@ router.post(
     if (status) profileFields.status = status;
     if (location) profileFields.location = location;
     if (githubusername) profileFields.githubusername = githubusername;
-    if (skills)
-      profileFields.skills = skills.split(',').map((skill) => skill.trim());
-
+    if (skills && typeof skills === 'object')
+      //profileFields.skills = skills.split(',').map((skill) => skill.trim());
+      profileFields.skills = skills.toString();
     //Build social object
     profileFields.social = {};
     if (youtube) profileFields.social.youtube = youtube;
