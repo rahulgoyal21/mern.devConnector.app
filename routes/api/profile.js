@@ -26,7 +26,7 @@ router.get('/me', auth, async (req, res) => {
   }
 });
 
-//@route  GET api/profile
+//@route  POST api/profile
 //@desc   Create or update user profile
 //@access Private
 router.post(
@@ -66,9 +66,7 @@ router.post(
     if (status) profileFields.status = status;
     if (location) profileFields.location = location;
     if (githubusername) profileFields.githubusername = githubusername;
-    if (skills && typeof skills === 'object')
-      //profileFields.skills = skills.split(',').map((skill) => skill.trim());
-      profileFields.skills = skills.toString();
+    if (skills) profileFields.skills = skills.split(',').map((skill) => skill);
     //Build social object
     profileFields.social = {};
     if (youtube) profileFields.social.youtube = youtube;

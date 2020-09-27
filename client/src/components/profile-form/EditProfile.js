@@ -35,11 +35,16 @@ const EditProfile = ({
       githubusername:
         loading || !profile?.githubusername ? '' : profile?.githubusername,
       bio: loading || !profile?.bio ? '' : profile?.bio,
-      twitter: loading || !profile?.social ? '' : profile?.social.twitter,
-      facebook: loading || !profile?.social ? '' : profile?.social.facebook,
-      linkedin: loading || !profile?.social ? '' : profile?.social.linkedin,
-      youtube: loading || !profile?.social ? '' : profile?.social.youtube,
-      instagram: loading || !profile?.social ? '' : profile?.social.instagram
+      twitter:
+        loading || !profile?.social?.twitter ? '' : profile?.social.twitter,
+      facebook:
+        loading || !profile?.social?.facebook ? '' : profile?.social.facebook,
+      linkedin:
+        loading || !profile?.social?.linkedin ? '' : profile?.social.linkedin,
+      youtube:
+        loading || !profile?.social?.youtube ? '' : profile?.social.youtube,
+      instagram:
+        loading || !profile?.social?.instagram ? '' : profile?.social.instagram
     });
   }, [loading, getCurrentProfile]);
   const {
@@ -230,7 +235,7 @@ const EditProfile = ({
         )}
 
         <input type='submit' className='btn btn-primary my-1' />
-        <Link className='btn btn-light my-1' href='/dashboard'>
+        <Link className='btn btn-light my-1' to='/dashboard'>
           Go Back
         </Link>
       </form>
