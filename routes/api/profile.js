@@ -66,7 +66,9 @@ router.post(
     if (status) profileFields.status = status;
     if (location) profileFields.location = location;
     if (githubusername) profileFields.githubusername = githubusername;
-    if (skills) profileFields.skills = skills.split(',').map((skill) => skill);
+    if (typeof skills !== 'object')
+      profileFields.skills = skills.split(',').map((skill) => skill);
+    else profileFields.skills = skills;
     //Build social object
     profileFields.social = {};
     if (youtube) profileFields.social.youtube = youtube;
