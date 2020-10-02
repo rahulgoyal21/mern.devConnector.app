@@ -25,6 +25,8 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
               profiles.map((profile) => (
                 <ProfileItem key={profile._id} profile={profile} />
               ))
+            ) : !loading ? (
+              <Spinner />
             ) : (
               <h4>No profiles found...</h4>
             )}
