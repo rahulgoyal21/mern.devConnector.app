@@ -27,7 +27,7 @@ router.post(
   '/',
   [
     check('email', 'Please include a valid email').isEmail(),
-    check('password', 'Password is required').exists()
+    check('password', 'Password is required').not().isEmpty()
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -41,7 +41,7 @@ router.post(
       if (!user) {
         return res
           .status(400)
-          .json({ error: [{ msg: 'Invalid Credentials' }] });
+          .json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
 
       //Password matching
@@ -49,19 +49,19 @@ router.post(
       if (!isMatch) {
         return res
           .status(400)
-          .json({ error: [{ msg: 'Invalid Credentials' }] });
+          .json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
 
       //Return jsonwebtoken
       const payload = {
         user: {
-          id: user.id                        //mongoose convert the _id to id itself
+          id: user.id //mongoose convert the _id to id itself
         }
       };
       jwt.sign(
-        payload,                      //mandatory to pass payload
+        payload, //mandatory to pass payload
         config.get('jwtSecret'),
-        { expiresIn: 360000 },       //optional to pass expiresIN
+        { expiresIn: 360000 }, //optional to pass expiresIN
         (err, token) => {
           if (err) throw err;
           return res.json({ token });
