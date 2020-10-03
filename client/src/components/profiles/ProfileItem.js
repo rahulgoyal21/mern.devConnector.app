@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getGithubProfileImage } from '../../actions/profile';
 
 const ProfileItem = ({
-  profile: { user, status, company, location, skills }
+  profile: { user, status, company, location, skills, githubusername }
 }) => {
+  const [imgUrl, setImgUrl] = useState('');
+  useEffect(() => {
+    async function getData() {
+      try {
+        const response = await getGithubProfileImage(githubusername);
+        setImgUrl(response);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getData();
+  }, [githubusername]);
   return (
     <div className='profile bg-light'>
-      <img src={user?.avatar} alt='' className='round-img' />
+      <img src={imgUrl} alt='' className='round-img' />
       <div>
         <h2>{user?.name}</h2>
         <p>

@@ -221,3 +221,9 @@ export const deleteAccount = () => async (dispatch) => {
     }
   }
 };
+
+export const getGithubProfileImage = async (githubusername) => {
+  return fetch(`https://api.github.com/users/${githubusername}`)
+    .then((res) => res.json())
+    .then((data) => data.avatar_url);
+};
