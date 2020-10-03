@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { getGithubProfileImage } from '../../actions/profile';
 
 const ProfileTop = ({
   profile: {
+    githubusername,
     status,
     company,
     location,
@@ -11,9 +13,21 @@ const ProfileTop = ({
     user: { name, avatar }
   }
 }) => {
+  const [imgUrl, setImgUrl] = useState('');
+  useEffect(() => {
+    async function getData() {
+      try {
+        const response = await getGithubProfileImage(githubusername);
+        setImgUrl(response);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getData();
+  }, [githubusername]);
   return (
     <div className='profile-top bg-primary p-2'>
-      <img className='round-img my-1' src={avatar} alt='' />
+      <img className='round-img my-1' src={imgUrl} alt='' />
       <h1 className='large'>{name}</h1>
       <p className='lead'>
         {status} {company && <span>at {company}</span>}
