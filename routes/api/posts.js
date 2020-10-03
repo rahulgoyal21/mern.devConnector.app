@@ -67,7 +67,6 @@ router.get('/:id', auth, async (req, res) => {
 //@access Private
 router.delete('/:id', auth, async (req, res) => {
   try {
-    console.log('.....id params....', req.params.id);
     const post = await Post.findById(req.params.id);
 
     if (!post) return res.status(404).json({ msg: 'Post Not Found' });
